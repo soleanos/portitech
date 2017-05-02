@@ -11,8 +11,31 @@ var Utils = require('../utils');
 var utils = new Utils();
 
 var user = {name:"Anthony"};
+var game = {};
+
 router.get('/anthony/', function(req,res,next){
-    res.render('jeux/anthony/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
+    res.render('jeux/anthony/accueil',{game :{},user : user,title: 'Signup', msgs:utils.read_messages(req)});
+});
+
+router.post('/anthony', function(req,res,next){
+    var game = game;
+    var render = {};
+
+    if (!req.body || !req.body.num){
+        res.status(401);
+        if (!req.body.couleur) utils.new_message(req,{type:'danger',msg:'Vous  navez pas choisie de couleur !' });
+        if (!req.body.num) utils.new_message(req,{type:'danger',msg:'Vous devez choisir un nombre '});
+        render = {game : {},user : user,title: 'Signup', msgs:utils.read_messages(req)};
+    }else{
+        console.log(game);
+        game.num = req.body.num;
+        console.log(req.body);
+        //game.color = req.body.select.options[select.selected[index]].value;
+        render = {user: user,game: game,title: 'Signup',msgs: utils.read_messages(req)};
+    }
+
+    res.render('jeux/anthony/accueil',render);
+
 });
 
 var user = {name:"Tetris"};
