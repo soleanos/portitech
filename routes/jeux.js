@@ -44,8 +44,6 @@ router.post('/anthony', function(req,res,next){
 });
 
 var user = {name:"Brudele"};
-var Laby = require('../public/jeux/laby/');
-var laby = new Laby();
 
 router.get('/brudele/', function(req,res,next){
     res.render('jeux/brudele/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
