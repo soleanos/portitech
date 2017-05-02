@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TETRIS</title>
+</head>
+<body>
+<body>
+<header><% include ../../partials/header %></header>
+
+    Bienvenue , pret à jouer ?
+
+    <div id="page_content" class="container">
+        <% include ../../partials/msg %>
+        <form action="/jeux/TETRIS/jouer" class="form-signin" method="post">
+            <fieldset><legend class="alert alert-info">Jouer</legend>
+                <label for="inputUsername" class="sr-only">Choisir un numéro</label>
+                <input name="numero" type="text" id="numero" class="form-control" placeholder="Numero" required autofocus>
+                <button class="btn btn-lg btn-success btn-block" type="submit">TETRIS!! </button>
+        </form>
+    </div>
+
+</body>
+</body>
+</html>

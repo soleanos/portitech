@@ -15,6 +15,11 @@ router.get('/anthony/', function(req,res,next){
     res.render('jeux/anthony/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
 });
 
+var user = {name:"Tetris"};
+router.get('/Tetris/', function(req,res,next){
+    res.render('jeux/Tetris/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
+});
+
 module.exports = router;
 
 
