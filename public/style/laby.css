@@ -1,0 +1,168 @@
+body {
+	background-color: #333;
+    /*background-color: #cc99ff;*/
+    /*background-image: url("garden-maze.jpg");*/
+	
+}
+.content{
+	background-color: #ddd;
+	position: fixed;
+	top: 100px;
+	width: 100%;
+	text-align: center;
+	height: 100%;
+	border-top: 2px solid #fff;
+}
+/* Texte */
+h1, h2, h3, h4, h5, h6, p, nav, footer, table {
+	font-family: verdana;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+	height: 100px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	color: #ddd;
+	background-image: url("../img/motif.png");
+}
+nav a{
+	color: #a2b43a;
+	text-decoration:none;
+	background-color : #333;
+	border: 1px solid #ccc;
+	padding: 8px;
+	border-radius: 10px;
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.cur{
+	font-weight: bold;
+	color: #ddd;
+	border: 2px solid #ccc;
+}
+.scores{
+	max-width:960px !important;
+	margin-left:auto;
+	margin-right:auto;
+}
+.no{
+	height:1px;
+	padding:1px !important;
+}
+.scores th{
+	
+}
+.scores td{
+	border:1px solid #fff !important;
+}
+
+aside{
+	color: #a2b43a;
+	padding-left: 10px;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+	width:100%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-image: url("../img/motif.png");
+	border-top: 2px solid #fff;
+	color: #ddd;
+}
+footer a{ 
+	color: #a2b43a;
+	text-decoration:none;
+}
+footer img{
+	margin-top: 10px;
+}
+.modal-header, h4, .close {
+      background-color: #a2b43a;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+}
+.xs{
+	width: 40px;
+}
+  
+div.maze {
+    position: relative;
+    top: 50px;
+    left: 150px;
+    width: 300px;
+    height: 300px;
+    /*border: dotted;
+    border-color: brown;
+    border-collapse:collapse;
+    border-width: thin;*/
+}
+
+#board {
+    position: fixed;
+    top:20px;
+}
+
+#user {
+    position: absolute;    
+    background: url(../img/character.png);
+	background-repeat :no-repeat;
+	background-position:center;
+}
+.item{
+	background-repeat :no-repeat;
+	background-position:center;
+	position: absolute; 
+}
+.monster {
+    background: url(../img/monstre_1.png);
+}
+.invulnerability{
+	background: url(../img/bonus_invulnerabilite.png);
+}
+.scoreplus{
+	background: url(../img/bonus_score.png);
+}
+.scoreminus{
+	background: url(../img/malus_score.png);
+}
+.timeplus{
+	background: url(../img/bonus_temps.png);
+}
+.timeminus{
+	background: url(../img/malus_temps.png);
+}
+.passe_muraille{
+	background: url(../img/bonus_passe_muraille.png);
+}
+.monster_passe{
+	background: url(../img/malus_passe_monstre.png);
+}
+
+div.cell_intersect {
+    position: absolute;
+    background:black;
+    border-radius:50%;    
+    width:10px;
+    height:10px;
+}
+
+div.cell {
+    position: absolute;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-collapse:collapse;
+}
+
+div.N { border-top: 5px solid #000; }
+div.E { border-right: 5px solid #000; }
+div.S { border-bottom: 5px solid #000; }
+div.W { border-left: 5px solid #000; }

@@ -15,6 +15,11 @@ router.get('/anthony/', function(req,res,next){
     res.render('jeux/anthony/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
 });
 
+var user = {name:"Brudele"};
+router.get('/brudele/', function(req,res,next){
+    res.render('jeux/brudele/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
+});
+
 module.exports = router;
 
 
