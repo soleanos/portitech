@@ -18,7 +18,7 @@ router.get('/anthony/', function(req,res,next){
 });
 
 router.post('/anthony', function(req,res,next){
-    var game = game;
+    var game = {};
     var render = {};
 
     if (!req.body || !req.body.num){
@@ -27,10 +27,9 @@ router.post('/anthony', function(req,res,next){
         if (!req.body.num) utils.new_message(req,{type:'danger',msg:'Vous devez choisir un nombre '});
         render = {game : {},user : user,title: 'Signup', msgs:utils.read_messages(req)};
     }else{
-        console.log(game);
         game.num = req.body.num;
-        console.log(req.body);
-        //game.color = req.body.select.options[select.selected[index]].value;
+        console.log(req.body.select);
+        //game.color = req.body.select;
         render = {user: user,game: game,title: 'Signup',msgs: utils.read_messages(req)};
     }
 
