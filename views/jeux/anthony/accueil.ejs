@@ -4,22 +4,39 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
-<body>
-<header><% include ../partials/header %></header>
+<header><% include ../../partials/header %></header>
 
     Bienvenue <%=user.name%>, pret à jouer ?
 
     <div id="page_content" class="container">
-        <% include ../partials/msg %>
-        <form action="/jeux/anthony/jouer" class="form-signin" method="post">
+        <% include ../../partials/msg %>
+        <form action="/jeux/anthony/" class="form-signin" method="post">
             <fieldset><legend class="alert alert-info">Jouer</legend>
                 <label for="inputUsername" class="sr-only">Choisir un numéro</label>
-                <input name="numero" type="text" id="numero" class="form-control" placeholder="Numero" required autofocus>
+
+                <select id = "num" name = "num" required>
+                    <% game.numbers.forEach(function(number) { %>
+                    <option value=<%= number %> ><%= number %></option>
+                    <% }); %>
+                </select>
+
+                <select id = "select" name = "select" required>
+                    <option value="rouge">ROUGE</option>
+                    <option value="noir" >NOIR</option>
+                </select>
+
                 <button class="btn btn-lg btn-success btn-block" type="submit">Faire tourner la roue !! </button>
+            </fieldset>
         </form>
     </div>
 
+    <%if ( game && game.num &&  game.random) { %>
+            Vous avez choisie le numéro : <%=game.num%>
+            Vous avez choisie le numéro qui est tombé est : <%=game.random%>
+    <% } %>
+
 </body>
-</body>
+
 </html>
