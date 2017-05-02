@@ -15,18 +15,26 @@
         <form action="/jeux/anthony/" class="form-signin" method="post">
             <fieldset><legend class="alert alert-info">Jouer</legend>
                 <label for="inputUsername" class="sr-only">Choisir un numéro</label>
-                <input name="num" type="number" min="1" max="9" id="num" class="form-control" placeholder="Num" required autofocus>
-                <select id="select" required>
-                    <option value="rouge">ROUGE</option>
-                    <option value="noir" selected>NOIR</option>
+
+                <select id = "num" name = "num" required>
+                    <% game.numbers.forEach(function(number) { %>
+                    <option value=<%= number %> ><%= number %></option>
+                    <% }); %>
                 </select>
+
+                <select id = "select" name = "select" required>
+                    <option value="rouge">ROUGE</option>
+                    <option value="noir" >NOIR</option>
+                </select>
+
                 <button class="btn btn-lg btn-success btn-block" type="submit">Faire tourner la roue !! </button>
             </fieldset>
         </form>
     </div>
 
-    <%if ( game && game.num) { %>
+    <%if ( game && game.num &&  game.random) { %>
             Vous avez choisie le numéro : <%=game.num%>
+            Vous avez choisie le numéro qui est tombé est : <%=game.random%>
     <% } %>
 
 </body>
