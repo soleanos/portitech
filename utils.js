@@ -31,14 +31,13 @@ Utils.prototype.read_messages= function(req){
 }
 
 /* Vérifie que l'utilisateur est connecté, sinon, le redirige sur la page d'accueil */
-Utils.prototype.HasToBeConnected= function(req,res,next){
-    if(!req.user) {
+Utils.prototype.HasToBeConnected= function(req,res){
+    if(!req.session.user) {
         res.redirect('/'); 
         this.new_message(req,{type:'warning',msg:'No user logged in'});
         return;
     }
-    next();
-}
+};
 
 Utils.prototype.check = function(req,res,next){
 	if (!req.query.username){

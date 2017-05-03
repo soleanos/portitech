@@ -9,6 +9,7 @@ var utils = new Utils();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    console.log(req.user);
     res.render('pages/index', { user: req.user, msgs:utils.read_messages(req)});
 });
 
