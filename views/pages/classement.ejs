@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Boule</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% include ../partials/head %>
+
+</head>
+
+<body>
+<header>
+    <% include ../partials/header %>
+</header>
+<p><a href="/users/logout">Log out</a></p>
+<p><a href="/home">Précédent</a></p>
+
+<div class="responsive-table-line" style="margin:0px auto;max-width:700px;">
+    <table class="table table-bordered table-condensed table-body-center" >
+        <thead>
+        <tr>
+            <th>Pseudonyme</th>
+            <th>Date d'inscription</th>
+            <th>Argent total</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(function(user) { %>
+                <tr>
+                    <td data-title="surname"><%= user.username %></td>
+                    <td data-title="date"><%= user.date %></td>
+                    <td data-title="money"><%= user.money %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

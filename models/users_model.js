@@ -9,7 +9,8 @@ var UserSchema = new Schema({
     username: {type: String, unique: true},
 	email: {type: String, unique: true},
 	hashed_password: String,
-    date: Date
+    date: Date,
+    money:{type: Number}
 });
 
 // pour pouvoir faire appel au schéma ailleurs :

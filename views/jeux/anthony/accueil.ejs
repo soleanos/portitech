@@ -2,40 +2,109 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Boule</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% include ../../partials/head %>
+
 </head>
 
 <body>
-<header><% include ../../partials/header %></header>
+    <header>
+        <% include ../../partials/header %>
+    </header>
 
-    Bienvenue <%=user.name%>, pret à jouer ?
-
-    <div id="page_content" class="container">
-        <% include ../../partials/msg %>
-        <form action="/jeux/anthony/" class="form-signin" method="post">
-            <fieldset><legend class="alert alert-info">Jouer</legend>
-                <label for="inputUsername" class="sr-only">Choisir un numéro</label>
-
-                <select id = "num" name = "num" required>
-                    <% game.numbers.forEach(function(number) { %>
-                    <option value=<%= number %> ><%= number %></option>
-                    <% }); %>
-                </select>
-
-                <select id = "select" name = "select" required>
-                    <option value="rouge">ROUGE</option>
-                    <option value="noir" >NOIR</option>
-                </select>
-
-                <button class="btn btn-lg btn-success btn-block" type="submit">Faire tourner la roue !! </button>
-            </fieldset>
-        </form>
+    <div id="slider">
+        <div id="custom-handle" class="ui-slider-handle"></div>
     </div>
 
-    <%if ( game && game.num &&  game.random) { %>
+    <p><a href="/users/logout">Log out</a></p>
+    <p><a href="/jeux/">Précédent</a></p>
+
+    <div id="page_content" class="container">
+            <% include ../../partials/msg %>
+
+            Bienvenue <%=user.username%>
+            <br>
+
+            VOTRE ARGENT : <%=user.money%>
+
+            <%if (user.money > 0) { %>
+            pret à jouer ?
+            <br>
+            <br>
+
+            <form action="/jeux/anthony/" class="form-signin" method="post">
+                <fieldset><legend class="alert alert-info">Jouer</legend>
+
+                    <label for="num" class="sr-only">Choisir un numéro</label>
+                    <select id = "num" name = "num" required>
+                        <% game.numbers.forEach(function(number) { %>
+                        <option value=<%= number %> ><%= number %></option>
+                        <% }); %>
+                    </select>
+                    (GAIN 7 FOIS LA MISE) |
+
+                    Miser dessus : <input type = "number" name = "miseNum" id = "mise" min="1" max=<%=user.money%> ></input> ( max : <%=user.money%>)
+
+                    <!--<br>-->
+
+                    <!--<label for="color" class="sr-only">Choisir une couleur</label>-->
+                    <!--<select id = "color" name = "color" required>-->
+                        <!--<% game.colors.forEach(function(color) { %>-->
+                        <!--<option value=<%= color %> ><%= color %></option>-->
+                        <!--<% }); %>-->
+                    <!--</select>-->
+                    <!--(GAIN 2 FOIS LA MISE) |-->
+
+                    <!--Miser dessus : <input type = "number" name = "miseColor" id = "miseColor" min="1" max=<%=user.money%> ></input> ( max : <%=user.money%>)-->
+
+                    <br>
+
+                </fieldset>
+
+                <br>
+
+                <button class="btn btn-lg btn-success btn-block" type="submit">Faire tourner la roue !! </button>
+
+            </form>
+
+            <br>
+
+            <%if ( game && game.num &&  game.randomNum) { %>
             Vous avez choisie le numéro : <%=game.num%>
-            Vous avez choisie le numéro qui est tombé est : <%=game.random%>
-    <% } %>
+            <br>
+            <br>
+            Le numéro qui est sortie est : <%=game.randomNum%> !!!!
+            <br>
+            Sa couleur est : <%=game.randomColor%>
+            <% } %>
+
+            <br>
+            <br>
+
+            <%if ( game && game.results &&  game.results.num == "win") { %>
+            Vous avez choisie le bon numéro !! <br>
+            Vous gagnez donc 7 fois votre mise sur le numéro <%=game.randomNum%> ( <%=game.miseNum%> euros) soit <%=game.miseNum*7%> EUROS
+            <% }else{ %>
+            Votre numéro n'est pas gagnant  ..
+            <% } %>
+
+            <br>
+
+            <!--<%if ( game && game.results &&  game.results.color == "win") { %>-->
+            <!--Vous avez choisie la bonne couleur !!-->
+            <!--Vous gagnez donc 2 fois votre mise sur la couleur <%=game.randomColor%> ( <%=game.miseColor%> euros) soit <%=(game.miseColor)*2%> EUROS-->
+            <!--<% }else{ %>-->
+            <!--Mauvaise couleur .. perdu !-->
+            <!--<% } %>-->
+
+            <% } else { %>
+            <br>
+            Vous n'avez plus d'argent !!!
+            <% } %>
+
+
+        </div>
 
 </body>
 
