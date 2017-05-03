@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+
 //appeler le modele
 require('./models/users_model');
 var User = mongoose.model('User');
