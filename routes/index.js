@@ -22,4 +22,19 @@ router.get('/', function(req, res, next) {
 });
 
 
+router.get('/classement', function(req, res, next) {
+
+        var allUsers = [];
+        allUsers = User.find({}, function(err, allUsers) {
+            var render = { users:{}, user: req.user, msgs:utils.read_messages(req)};
+            if(!err){
+                render = {users : allUsers, user: req.user, msgs:utils.read_messages(req)};
+            }
+            res.render('pages/classement', render);
+        }).sort({money:-1});
+
+
+});
+
+
 module.exports = router;
