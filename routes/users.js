@@ -72,7 +72,7 @@ router.post('/login',function(req, res, next) {
             req.session.user = doc;
             req.session.save(function(err) {
             });
-            res.redirect('/jeux/');
+            res.redirect('/home');
         }
         else {
             utils.new_message(req,{type:'danger',msg:'Password does not match'});

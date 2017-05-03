@@ -39,6 +39,12 @@ Utils.prototype.HasToBeConnected= function(req,res){
     }
 };
 
+Utils.prototype.HasToBeUnConnected= function(req,res){
+    if(req.session.user) {
+        res.redirect('/');
+    }
+};
+
 Utils.prototype.check = function(req,res,next){
 	if (!req.query.username){
 		res.status(401);
@@ -48,37 +54,7 @@ Utils.prototype.check = function(req,res,next){
 	next();
 };
 
-/**
-* Retourne une erreur 401 si l'utilisateur EST connecté, laisse passer la requête sinon.
-* @param {Object} req
-* @param {Object} res
-* @param {Object} next
-* @return {null}
-*/
-Utils.prototype.hasToBeDisconnected = function(req, res, next){
-   if(Utils.prototype.connected(req)){
-       res.status(401);
-       res.send("Vous êtes déjà connecté");
-       return;
-   }
-   next();
-};
-
-/**
-* Retourne une erreur 401 si l'utilisateur N'EST PAS connecté, laisse passer la requête sinon.
-* @param {Object} req
-* @param {Object} res
-* @param {Object} next
-* @return {null}
-*/
-Utils.prototype.hasToBeConnected = function(req, res, next){
-   if(!Utils.connected(req)){
-       res.status(401);
-       res.send("Vous n'êtes pas connecté");
-       return;
-   }
-   next();
-};
+/*
 
 /**
 * Retourne une erreur 401 si l'utilisateur N'est pas administrateur, laisse passer la requête sinon.

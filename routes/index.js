@@ -8,9 +8,18 @@ var Utils = require('../utils');
 var utils = new Utils();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    console.log(req.user);
-    res.render('pages/index', { user: req.user, msgs:utils.read_messages(req)});
+router.get('/home', function(req, res, next) {
+    res.render('pages/home', { user: req.user, msgs:utils.read_messages(req)});
 });
+
+router.get('/', function(req, res, next) {
+    if(!req.session.user){
+        res.render('pages/index', { user: req.user, msgs:utils.read_messages(req)});
+    }else{
+        res.redirect('/home');
+    }
+
+});
+
 
 module.exports = router;
