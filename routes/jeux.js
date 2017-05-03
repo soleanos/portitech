@@ -26,8 +26,12 @@ router.get('/', function(req,res,next){
 
 });
 
+router.get('/anthony', function(req,res,next){
+    utils.HasToBeConnected(req,res);
+    res.render('jeux/anthony/home',{user : req.user, msgs:utils.read_messages(req)});
+});
 
-router.get('/anthony/', function(req,res,next){
+router.get('/anthony/boule', function(req,res,next){
 
     utils.HasToBeConnected(req,res);
 
@@ -38,11 +42,11 @@ router.get('/anthony/', function(req,res,next){
             else req.user = user; // on ne sauvegarde pas l'user dans une var de session, mais dans une var temporaire à la requete
         });
     }
-    res.render('jeux/anthony/accueil',{game :game,user : req.user,title: 'Signup', msgs:utils.read_messages(req)});
+    res.render('jeux/anthony/boule',{game :game,user : req.user,title: 'Signup', msgs:utils.read_messages(req)});
 
 });
 
-router.post('/anthony', function(req,res,next){
+router.post('/anthony/boule', function(req,res,next){
     var render = {};
 
     if (req.body && (req.body.miseNum || req.body.miseColor)){
@@ -68,13 +72,17 @@ router.post('/anthony', function(req,res,next){
     }
 
     console.log(req.body);
-    res.render('jeux/anthony/accueil',render);
+    res.render('jeux/anthony/boule',render);
 
 });
 
 var user = {name:"Tetris"};
 router.get('/Tetris/', function(req,res,next){
     res.render('jeux/Tetris/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
+});
+
+router.get('/anthony/phaser', function(req,res,next){
+    res.render('jeux/anthony/godcat',{title: 'Signup', msgs:utils.read_messages(req)});
 });
 
 module.exports = router;
