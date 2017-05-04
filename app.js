@@ -7,11 +7,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+
 //appeler le modele
 require('./models/users_model');
 var User = mongoose.model('User');
 //connexion DB
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/portitech');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

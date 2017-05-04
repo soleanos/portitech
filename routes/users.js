@@ -44,7 +44,8 @@ router.post('/signup', function(req,res,next){
             username: req.body.username, 
             hashed_password:myhash, 
             email: req.body.email, 
-            date: date
+            date: date,
+            money:400
         });
 		user.save(function(err){
 			if (err){
@@ -68,7 +69,10 @@ router.post('/login',function(req, res, next) {
         }
         if (utils.hashPW(req.body.password) == doc.hashed_password){
             req.session.userId = doc._id;
-            res.render('pages/account',{title:'Account'});
+            req.session.user = doc;
+            req.session.save(function(err) {
+            });
+            res.redirect('/home');
         }
         else {
             utils.new_message(req,{type:'danger',msg:'Password does not match'});
@@ -76,7 +80,9 @@ router.post('/login',function(req, res, next) {
         }
     });
 });
-    
+
+
+
 /* GET logout. */
 router.get('/logout',function(req,res,next){
     req.session.destroy();

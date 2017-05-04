@@ -3,44 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>TETRIS</title>
-    <script src="./phaser.min.js"></script>
-    <script src="./load.js"></script>
-    <script src="./mainmenu.js"></script>
-    <script src="./block.js"></script>
-    <script src="./game.js"></script>
+    <script src="../../../javascripts/Tetris/phaser.min.js"></script>
 </head>
 
-<body style:"margin:0px auto;">
+<body style="margin:0px auto;">
 <header><% include ../../partials/header %></header>
+HELLO WORLD
 
-<div id="gameContainer" style:"margin:0px auto;"></div>
+<div>
+    <script>
 
-<script type="text/javascript">
+        var game = new Phaser.Game(160, 320, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+        function preload() {
+            //game.load.spritesheet('LevelTetris0','../../../images/tetris/Tetrominos.png',59,31,-1)
+            //game.load.spritesheet('tetrominosT', '../../../images/tetris/Tetrominos.png',24,41,-1,32);
+            game.load.spritesheet('tetrominos', '../../../images/tetris/Tetrominos.png',32,16);
+            console.log('preload');
+        }
+        var platforms;
+        function create() {
+            //game.add.sprite(100, 0, 'LevelTetris0');
+            //game.add.sprite(0, 0, 'tetrominosT');
 
-    /* Made by Nambiar - Game Dolphin
+            player = game.add.sprite(20, 0, 'tetrominos');
 
-     Feel free to use and learn from */
-    var w = 400, h = 600;
+            game.physics.arcade.enable(player);
 
-    window.onload = function() {
+            //  Player physics properties. Give the little guy a slight bounce.
+            player.body.bounce.y = 0;
+            player.body.gravity.y = 100;
+            player.body.collideWorldBounds = true;
 
-        var gamevar = new Phaser.Game(w,h,Phaser.AUTO,'gameContainer');
+            //  Our two animations, walking left and right.
+            player.animations.add('left', [0, 1, 2, 3], 10, true);
+            player.animations.add('right', [5, 6, 7, 8], 10, true);
 
-        gamevar.state.add('Load',Game.Load);
 
-        gamevar.state.add('MainMenu',Game.MainMenu);
 
-        gamevar.state.add('Game',Game.PlayGame);
 
-        gamevar.state.add('Lose',Game.LoseScreen);
+            console.log('create');
+        }
 
-        gamevar.state.add('Win',Game.WinScreen);
+        function update(){
+            cursors = game.input.keyboard.createCursorKeys();
 
-        gamevar.state.start('Load');
+            //  Reset the players velocity (movement)
+            player.body.velocity.x = 0;
 
-    };
+            if (cursors.left.isDown)
+            {
+                //  Move to the left
+                player.body.scale.x = 16;
+            }
+            else if (cursors.right.isDown)
+            {
+                //  Move to the right
+                player.body.velocity.x = 16;
 
-</script>
+            }
+            else if (cursors.up.isDown)
+            {
+
+                player.body.rotateRight = 100;
+
+
+            }
+            console.log('update');
+        }
+
+    </script>
+</div>
 
 </body>
 </html>
