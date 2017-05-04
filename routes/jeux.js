@@ -85,7 +85,7 @@ router.get('/anthony/phaser', function(req,res,next){
     res.render('jeux/anthony/godcat',{title: 'Signup', msgs:utils.read_messages(req)});
 });
 
-router.get('/catInvaders', function(req,res,next){
+router.get('/anthony/catInvaders', function(req,res,next){
     res.render('jeux/anthony/catInvader',{ msgs:utils.read_messages(req)});
 });
 var user = {name:"Brudele"};
@@ -105,8 +105,6 @@ router.get('/brudele/scores', function(req,res,next){
 router.post('/brudele/score', function(req,res,next){
 
 });
-
-
 
 module.exports = router;
 
