@@ -33,6 +33,8 @@ var tetris = new Jeux({ name: 'tetris',createur:'Clement',lien:'/jeux/tetris'});
 var labyrinth = new Jeux({ name: 'Labyrinth',createur:'Brudele et Servino',lien:'/jeux/laby'});
 var MamouthSport = new Jeux({ name: 'Mamouth-Sport',createur:'Mahmut',lien:'/jeux/mahmutSport'});
 var casseBrique = new Jeux({ name: 'Casse brique',createur:'Farid',lien:'/jeux/casseBrique'});
+var puzzle = new Jeux({ name: 'Cat puzzle',createur:'Anthony',lien:'/jeux/puzzle'});
+var invader = new Jeux({ name: 'Cat invaders',createur:'Anthony',lien:'/jeux/invader'});
 
 //Insertion en base
 
@@ -41,6 +43,8 @@ tetris.save();
 boule.save();
 MamouthSport.save();
 casseBrique.save();
+puzzle.save();
+invader.save();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
