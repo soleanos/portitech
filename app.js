@@ -19,7 +19,7 @@ var Jeux = mongoose.model('game');
 //CREATIONS DES JEUX EN BASE
 
 //On vide la collection
-//Jeux.remove({});
+Jeux.remove({});
 
 //Instantiation des jeux
 
@@ -30,7 +30,6 @@ var MamouthSport = new Jeux({ name: 'Mamouth-Sport',createur:'Mahmut',lien:'/jeu
 var casseBrique = new Jeux({ name: 'Casse brique',createur:'Farid',lien:'/jeux/casseBrique'});
 
 //Insertion en base
-console.log(boule);
 
 labyrinth.save();
 tetris.save();

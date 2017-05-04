@@ -11,19 +11,11 @@
 </head>
 <body>
 	<SCRIPT LANGUAGE="JavaScript">
-		    function anthony(){
-		     document.location.href="http://localhost:3000/jeux/anthony"
-		    };
+		function goToGame(lien){
+            document.location.href="http://localhost:3000"+lien;
+        };
+	</SCRIPT>
 
-		    function clement(){
-		        document.location.href="http://localhost:3000/jeux/Tetris"
-		    }
-
-		    function brudele(){
-		        document.location.href="http://localhost:3000/jeux/brudele"
-		    }
-
-		</SCRIPT>
 	<div class="container">
 		<nav class="navbar navbar-default navbar-fixed-top">
 	        <div class="container">
@@ -41,39 +33,23 @@
 			<br>
 
 			<div class="row">
-			  <div class="col-sm-6 col-md-4">
-			    <div class="thumbnail">
-			      <img src="http://thecatapi.com/api/images/get?format=src&type=gif" alt="...">
-			      <div class="caption">
-			        <h3>Anthony games</h3>
-			        <p>...</p>
-			        <button id="anthony" onClick="anthony()" class="btn btn-success" > Jeux Anthony </button>
-			      </div>
-			    </div>
-			  </div>
 
-			  <div class="col-sm-6 col-md-4">
-			    <div class="thumbnail">
-			      <img src="http://thecatapi.com/api/images/get?format=src&type=gif" alt="...">
-			      <div class="caption">
-			        <h3>Clement games</h3>
-			        <p>...</p>
-			        <button id="anthony" onClick="clement()" class="btn btn-success" > Jeux Clément </button>
-			      </div>
-			    </div>
-			  </div>
+                <% games.forEach(function(game) { %>
 
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<img src="http://thecatapi.com/api/images/get?format=src&type=gif" alt="...">
+						<div class="caption">
+							<h3><%= game.nom %></h3>
+							<h3>Créateur : <%= game.createur %></h3>
+							<p>...</p>
+							<button id="anthony" onClick="goToGame('<%= game.lien %>')" class="btn btn-success" > <%= game.createur %> </button>
+						</div>
+					</div>
+				</div>
 
-			  <div class="col-sm-6 col-md-4">
-			    <div class="thumbnail">
-			      <img src="../../brudele/img/laby2.jpg" alt="laby">
-			      <div class="caption">
-			        <h3>Brudele & Servino games</h3>
-			        <p>...</p>
-			        <button id="anthony" onClick="brudele()" class="btn btn-success" >Jeux brudele_servino </button>
-			      </div>
-			    </div>
-			  </div>
+				<% }); %>
+
 
 			</div>
 

@@ -6,6 +6,7 @@ var router = express.Router();
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Jeux = mongoose.model('game');
 var util = require('util');
 var Utils = require('../utils');
 var utils = new Utils();
@@ -20,10 +21,14 @@ game.colors = ["Rouge","Noir"];
 
 
 router.get('/', function(req,res,next){
-
-    utils.HasToBeConnected(req,res);
-    res.render('jeux/home',{user : req.user, msgs:utils.read_messages(req)});
-
+    var allGames = [];
+    allGames = Jeux.find({}, function(err, allGames) {
+        var render = { games:{}, user: req.user, msgs:utils.read_messages(req)};
+        if(!err){
+            render = {games : allGames, user: req.user, msgs:utils.read_messages(req)};
+        }
+        res.render('jeux/home', render);
+    })
 });
 
 router.get('/anthony', function(req,res,next){

@@ -15,3 +15,5 @@ var gestionResultatJeux = new GestionResultatJeux();
 router.post('/score', function(req,res,next){
     gestionResultatJeux.gestionResultat(req)
 });
+
+
