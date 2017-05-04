@@ -90,6 +90,7 @@ router.get('/anthony/phaser', function(req,res,next){
 router.get('/anthony/catInvaders', function(req,res,next){
     res.render('jeux/anthony/catInvader',{ msgs:utils.read_messages(req)});
 });
+
 var user = {name:"Brudele"};
 //GET method
 router.get('/brudele/', function(req,res,next){
