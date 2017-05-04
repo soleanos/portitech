@@ -9,11 +9,9 @@ var User = mongoose.model('User');
 var util = require('util');
 var Utils = require('../utils');
 var utils = new Utils();
-var gestionGainJeux = require('../public/javascripts/gestionGainJeux');
+var GestionResultatJeux = require('../public/javascripts/gestionGainJeux');
+var gestionResultatJeux = new GestionResultatJeux();
 
 router.post('/score', function(req,res,next){
-
-    utils.HasToBeConnected(req,res);
-    res.render('jeux/home',{user : req.user, msgs:utils.read_messages(req)});
-
+    gestionResultatJeux.gestionResultat(req)
 });

@@ -11,4 +11,4 @@ var JeuxSchema = new Schema({
 });
 
 // pour pouvoir faire appel au schéma ailleurs :
-mongoose.model('Jeux',JeuxSchema);
+mongoose.model('game',JeuxSchema);

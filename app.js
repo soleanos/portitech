@@ -7,12 +7,36 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+//connexion DB
+mongoose.connect('mongodb://localhost/portitech');
 
 //appeler le modele
 require('./models/users_model');
 var User = mongoose.model('User');
-//connexion DB
-mongoose.connect('mongodb://localhost/portitech');
+require('./models/jeux_model');
+var Jeux = mongoose.model('game');
+
+//CREATIONS DES JEUX EN BASE
+
+//On vide la collection
+//Jeux.remove({});
+
+//Instantiation des jeux
+
+var boule = new Jeux({ name: 'boule',createur:'Anthony',lien:'/jeux/boule'});
+var tetris = new Jeux({ name: 'tetris',createur:'Clement',lien:'/jeux/tetris'});
+var labyrinth = new Jeux({ name: 'Labyrinth',createur:'Brudele et Servino',lien:'/jeux/laby'});
+var MamouthSport = new Jeux({ name: 'Mamouth-Sport',createur:'Mahmut',lien:'/jeux/mahmutSport'});
+var casseBrique = new Jeux({ name: 'Casse brique',createur:'Farid',lien:'/jeux/casseBrique'});
+
+//Insertion en base
+console.log(boule);
+
+labyrinth.save();
+tetris.save();
+boule.save();
+MamouthSport.save();
+casseBrique.save();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

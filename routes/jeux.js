@@ -13,9 +13,8 @@ var utils = new Utils();
 var Boule = require('../public/javascripts/jeux/anthony/boule');
 var gestionGainJeux = require('../public/javascripts/gestionGainJeux');
 var boule = new Boule();
-
-var user = {name:"Anthony",money:50};
 var game = {};
+
 game.numbers = [1,2,3,4,5,6,7,8,9];
 game.colors = ["Rouge","Noir"];
 
