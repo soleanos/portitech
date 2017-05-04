@@ -111,6 +111,11 @@ router.post('/brudele/score', function(req,res,next){
 
 });
 
+//GET method
+router.get('/BreakOut', function(req,res,next){
+    res.render('jeux/BreakOut/brk', {title: 'Signup', msgs:utils.read_messages(req)});
+});
+
 module.exports = router;
 
 

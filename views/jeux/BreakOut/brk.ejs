@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Gamedev Phaser Workshop - lesson 01: Initialize the framework</title>
+  <title>Break Out</title>
   <style>* { padding: 0; margin: 0; }</style>
-  <script src="javascripts/phaser.min.js"></script>
+  <script src="../../../javascripts/Tetris/phaser.min.js"></script>
 </head>
 <body>
 <script>
@@ -30,11 +30,11 @@
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
         game.stage.backgroundColor = '#eee';    //coloration du background
-        game.load.image('ball','images/BreakOut/ball.png'); // chargement de la balle
-        game.load.image('paddle','images/BreakOut/paddle.png')  //chargement de la barre
-        game.load.image('brick', 'images/BreakOut/brick.png');
-        game.load.spritesheet('ball', 'images/BreakOut/wobble.png', 20, 20);
-        game.load.spritesheet('button', 'images/BreakOut/button.png', 120, 40);
+        game.load.image('ball','../../../images/BreakOut/ball.png'); // chargement de la balle
+        game.load.image('paddle','../../../images/BreakOut/paddle.png')  //chargement de la barre
+        game.load.image('brick', '../../../images/BreakOut/brick.png');
+        game.load.spritesheet('ball', '../../../images/BreakOut/wobble.png', 20, 20);
+        game.load.spritesheet('button', '../../../images/BreakOut/button.png', 120, 40);
     }
     function create() {
         game.physics.startSystem(Phaser.Physics.ARCADE);
