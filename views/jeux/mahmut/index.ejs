@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Troll Sport</title>
+    </head>
+    <body>
+
+        <script src="../../../javascripts/Tetris/phaser.min.js"></script>
+        <script src="../../../javascripts/Jeux/mahmutSport/boot.js"></script>
+        <script src="../../../javascripts/Jeux/mahmutSport/preload.js"></script>
+        <script src="../../../javascripts/Jeux/mahmutSport/gametitle.js"></script>
+        <script src="../../../javascripts/Jeux/mahmutSport/trollsport.js"></script>
+        <script src="../../../javascripts/Jeux/mahmutSport/gameover.js"></script>
+        <script>  
+			(function() {
+				var game = new Phaser.Game(800, 600, Phaser.AUTO, "");
+				game.state.add("Boot",boot);
+				game.state.add("Preload",preload);
+				game.state.add("GameTitle",gameTitle);
+				game.state.add("TrollSport",trollSport);
+				//game.state.add("GameOver",gameOver);
+				game.state.start("Boot");
+			})(); 
+            
+        </script>
+    </body>
+</html>
+
