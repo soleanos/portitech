@@ -5,7 +5,7 @@ Schema = mongoose.Schema;
 
 // instanciation du modèle de données (plus puissant qu'une table users :p )
 var JeuxSchema = new Schema({
-    nom: {type: String, unique: true},
+    name: {type: String, unique: true},
     createur: {type: String},
     lien : {type: String}
 });

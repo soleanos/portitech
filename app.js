@@ -19,7 +19,12 @@ var Jeux = mongoose.model('game');
 //CREATIONS DES JEUX EN BASE
 
 //On vide la collection
-Jeux.remove({});
+
+Jeux.remove({}, function(err) {
+    if(err){
+        console.log(err)
+    }
+});
 
 //Instantiation des jeux
 
