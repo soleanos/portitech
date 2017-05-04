@@ -1,5 +1,5 @@
 body {
-	background-color: #333;
+	/*background-color: #333;*/
     /*background-color: #cc99ff;*/
     /*background-image: url("garden-maze.jpg");*/
 	
@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6, p, nav, footer, table {
 	font-family: verdana;
 }
 
-nav {
+/*nav {
     position: fixed;
     top: 0;
 	height: 100px;
@@ -39,12 +39,12 @@ nav a{
 	margin-top: 10px;
 	margin-left: 5px;
 	margin-right: 5px;
-}
+}*/
 .cur{
 	font-weight: bold;
 	color: #ddd;
 	border: 2px solid #ccc;
-}
+}*/
 .scores{
 	max-width:960px !important;
 	margin-left:auto;
@@ -65,7 +65,7 @@ aside{
 	color: #a2b43a;
 	padding-left: 10px;
 }
-footer {
+/*footer {
     position: fixed;
     bottom: 0;
 	width:100%;
@@ -82,7 +82,8 @@ footer a{
 }
 footer img{
 	margin-top: 10px;
-}
+}*/
+
 .modal-header, h4, .close {
       background-color: #a2b43a;
       color:white !important;
@@ -93,17 +94,17 @@ footer img{
 	width: 40px;
 }
   
-div.maze {
+/*div.maze {
     position: relative;
     top: 50px;
     left: 150px;
     width: 300px;
     height: 300px;
-    /*border: dotted;
+    border: dotted;
     border-color: brown;
     border-collapse:collapse;
-    border-width: thin;*/
-}
+    border-width: thin;
+}*/
 
 #board {
     position: fixed;

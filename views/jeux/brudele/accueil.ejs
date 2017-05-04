@@ -21,39 +21,55 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body onkeydown="uniKeyCode(event)">
-    <nav>
-        <a  href="home.html">Home</a> 
-        <a class="cur" href="play.html">New game</a> 
-        <a href="scores.html">Scores</a>
-    </nav>
-    <div class="content">
-        <!--  gestion du chrono et des scores -->
-        <div style="visibility:hidden;" id="aside">
-            <aside>
-                <div id="board" style="align:left;">
-                    <p>
-                        <span id="name1">Player 1</span> | 
-                        <span id="timer1">Time</span> | 
-                        <span id="score1">Score</span>
-                    </p>
-                    <!--p>Time | Player 2 | Score</p-->
-                </div>
-            </aside>
-        </div>
-        <div id="maze">
-            <div id="player_name">
-                <h1>Enter player name :</h1>
-                <input type="text" id="p_name" value="Player 1">
-                <button id="name" type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_init">OK</button>
+    
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header pull-right">
+                <a class="navbar-brand" href="jeux/brudele/"><i class="glyphicon glyphicon-home"></i>Home</a>
+                <a class="navbar-brand" href="/"><i class="glyphicon glyphicon-user"></i>New-game</a>
+                <a class="navbar-brand" href="/brudele/score"glyphicon ><i class="glyphicon glyphicon-blackboard"></i>Score</a>
             </div>
-        </div>  
-    </div>
-    <footer>
-      <img src="../../img/logo.png">
-      <p>&copy; Platypus S.A.S. 2015-16</p>
-      <p>Designed for Chrome</p>
-      <p>Contact information: <a href="mailto:franck.lepoivre@platypus.academy">franck.lepoivre@platypus.academy</a>.</p>
-    </footer>
+            <div>
+                <p>
+                <span id="name1">Player 1</span> | 
+                <span id="timer1">Time</span> | 
+                <span id="score1">Score</span>
+                </p>
+            </div>
+        </div>
+    </nav>
+    <br><br><br><br>
+    <div class="container">
+        <!--  gestion du chrono et des scores -->
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                   
+            <div class="panel panel-info" >
+                <div class="panel-heading">
+                    <div class="panel-title">Enter player name</div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#"></a></div>
+                </div> 
+                <div style="padding-top:30px" class="panel-body" >
+                    <div style="display:none" class="alert alert-danger col-sm-12"></div>
+                        <div id="maze">
+                            <form action="#" class="form-signin" method="post">
+                                <div class="form-group" id="player_name">
+                                    <input type="text" id="p_name" value="Player 1" class="form-control">
+                                    <button id="name" type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal_init">OK</button>
+                                </div>   
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <footer>
+          <nav class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Copyright@2017 : Labyrinthe game</a>;
+                </div>
+            </div>
+        </nav>
+        </footer>
         <!--­ En bonus: Ajouter la possibilité de préciser, à travers une fenêtre modale, les dimensions du labyrinthe, en proposant d’une part des dimensions par défaut (ex: 20 x 20) , et en contraignant d’autre part (saisie sécurisée) ces dimensions à un maximum que vous fixerez.  
         ­ Astuce: intégrer Bootstrap pour utiliser leur fenêtre modale : https://www.bootstrapcdn.com/ pour les inclusions nécessaires, http://www.w3schools.com/bootstrap/bootstrap_modal.asp pour la modale
         -->
@@ -65,10 +81,11 @@
                 <h4 class="modal-title">New game</h4>
               </div>
               <div class="modal-body">
-                <form>
+                <form class="form-group">
                     <label>Input dimensions of the labyrinth :</label>
                     <input id="x" class="xs" value="5" type="number"/> x <input id="y" class="xs" value="5" type="number"/>
                     <br/>
+
                     <label>Enter maze cell size :</label>
                     <input class="xs" type="number" id="csz" value="50">px
                     <br/>
@@ -97,12 +114,30 @@
             </div>
           </div>
         </div>
-        <script type="text/javascript" src="public/script/laby_model.js"></script>
-        <script type="text/javascript" src="public/script/laby.js"></script>
+        <script type="text/javascript" src="../../brudele/script/laby_model.js"></script>
+        <script type="text/javascript" src="../../brudele/script/laby.js"></script>
         <script>
             //on relie le bouton de lancement à la fonction de démarrage du jeu
             $(function(){ 
                 $("#launch").on('click', main);
             })
+
+            function score(){
+
+                $.ajax({
+                   url : '/brudele/score',
+                   type : 'POST',
+                   datType : 'JSON',
+                   data : {"time" : "temps","point" : 50,"total" : 100},
+                   success : function(data){
+                       console.log(data);
+                   },
+                   error : function(resultat, data, erreur){
+                     
+                   },
+
+                });
+            }
+            
         </script>
 </body>
