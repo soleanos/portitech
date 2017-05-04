@@ -22,13 +22,18 @@ HELLO WORLD
             console.log('preload');
         }
         function create() {
-            BackgroundSprite = game.add.tileSprite(0,0,game.width,game.height,'bg')
-            player = game.add.sprite(20, 0, 'tetrominos');
+
+           // this.game.time.events.loop(125, this.updateStrength, this);
+
+
+            //BackgroundSprite = game.add.tileSprite(0,0,game.width,game.height,'bg')
+            player = game.add.sprite(40, 0, 'tetrominos');
 
             game.physics.arcade.enable(player);
 
             //  Player physics properties. Give the little guy a slight bounce.
             player.body.bounce.y = 0;
+            player.body.bounce.x = 0;
             player.body.gravity.y = 50;
             player.body.collideWorldBounds = true;
 
@@ -38,12 +43,12 @@ HELLO WORLD
 
             console.log('create');
         }
-
-        function update(){
-           var cpt = 0;
+        var cpt = 0;
+             function update(){
            cpt++;
-           if (counter = 5){
-               player.body.gravity.y = 0;
+           if (cpt == 500){
+               player.body.y += 16;
+               cpt =0;
            }
 
 
@@ -64,29 +69,30 @@ HELLO WORLD
                 player.body.velocity.x = 16;
 
             }
-            if (cursors.up.isDown)
-            {
 
-                player.body.allowRotation = true;
-                player.body.angularVelocity = 90;
+
+            if (cursors.up.isDown){
+
+
+                game.add.tween(player).to( { angle: 90 }, 1, Phaser.Easing.Circular.none, true);
 
             }
             else if( cursors.up.isUp){
-                player.body.allowRotation = false;
-                player.body.angularVelocity = 0;
 
             }
             if(cursors.down.isDown){
-                player.body.gravity.y = 1500;
+                player.body.y += 16;
             }
             console.log('update');
 
-            if( player.body.touching.down){
+            if( player.body.touching.down == true){
+                player.body.allowRotation = false;
+
             }
         }
 
     </script>
 </div>
-
+<input type = "submit" onclick="">envoye-ton score</input>
 </body>
 </html>
