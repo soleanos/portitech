@@ -88,6 +88,26 @@ router.get('/anthony/phaser', function(req,res,next){
 router.get('/catInvaders', function(req,res,next){
     res.render('jeux/anthony/catInvader',{ msgs:utils.read_messages(req)});
 });
+var user = {name:"Brudele"};
+//GET method
+router.get('/brudele/', function(req,res,next){
+    res.render('jeux/brudele/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
+});
+
+
+//GET method
+router.get('/brudele/scores', function(req,res,next){
+    res.render('jeux/brudele/score', {title: 'Signup', msgs:utils.read_messages(req)});
+});
+
+
+//POST method
+router.post('/brudele/score', function(req,res,next){
+
+});
+
+
+
 module.exports = router;
 
 
