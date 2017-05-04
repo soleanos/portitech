@@ -11,6 +11,7 @@ var Utils = require('../utils');
 var utils = new Utils();
 
 var Boule = require('../public/javascripts/jeux/anthony/boule');
+var gestionGainJeux = require('../public/javascripts/gestionGainJeux');
 var boule = new Boule();
 
 var user = {name:"Anthony",money:50};
@@ -58,6 +59,7 @@ router.post('/anthony/boule', function(req,res,next){
         game.money = req.session.user.money;
         game = boule.lancerPartie(game);
 
+
         User.update({ _id: req.session.user._id }, { $set: { money: game.money }}, function (err, tank) {
             if (err) console.log(err);
         });
@@ -85,9 +87,10 @@ router.get('/anthony/phaser', function(req,res,next){
     res.render('jeux/anthony/godcat',{title: 'Signup', msgs:utils.read_messages(req)});
 });
 
-router.get('/catInvaders', function(req,res,next){
+router.get('/anthony/catInvaders', function(req,res,next){
     res.render('jeux/anthony/catInvader',{ msgs:utils.read_messages(req)});
 });
+
 var user = {name:"Brudele"};
 //GET method
 router.get('/brudele/', function(req,res,next){
@@ -100,13 +103,16 @@ router.get('/brudele/scores', function(req,res,next){
     res.render('jeux/brudele/score', {title: 'Signup', msgs:utils.read_messages(req)});
 });
 
+//GET method
+router.get('/mahmutSport', function(req,res,next){
+    res.render('jeux/mahmut/index', {title: 'Signup', msgs:utils.read_messages(req)});
+});
+
 
 //POST method
 router.post('/brudele/score', function(req,res,next){
 
 });
-
-
 
 module.exports = router;
 

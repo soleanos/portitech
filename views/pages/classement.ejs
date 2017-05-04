@@ -1,40 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+</!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Boule</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <% include ../partials/head %>
-
+<meta charset="utf-8"/>
+    <title>LISTE DES GAMES ITECHSUP</title>
+    
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../brudele/style/laby.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-<header>
-    <% include ../partials/header %>
-</header>
-<p><a href="/users/logout">Log out</a></p>
-<p><a href="/home">Précédent</a></p>
 
-<div class="responsive-table-line" style="margin:0px auto;max-width:700px;">
-    <table class="table table-bordered table-condensed table-body-center" >
-        <thead>
-        <tr>
-            <th>Pseudonyme</th>
-            <th>Date d'inscription</th>
-            <th>Argent total</th>
-        </tr>
-        </thead>
-        <tbody>
-            <% users.forEach(function(user) { %>
-                <tr>
-                    <td data-title="surname"><%= user.username %></td>
-                    <td data-title="date"><%= user.date %></td>
-                    <td data-title="money"><%= user.money %></td>
-                </tr>
-            <% }); %>
-        </tbody>
-    </table>
-</div>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header pull-right">
+                    <a class="navbar-brand" href="/home"><i class="glyphicon glyphicon-home"></i>Jeux</a>
+                    <a class="navbar-brand" href="/users/logout"><i class="glyphicon glyphicon-user"></i>log out</a>
+                </div>
+            </div>
+        </nav>
+        <br><br><br><br>
+        <br>
+        <div class="text-center">
+            <h1>CLASSEMENT DES JOUEURS DES JEUX ITECHSUP</h1>
+            <br>
+            <br>
+                <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Panel heading</div>
 
+                <!-- Table -->
+                <table class="table table-bordered table-condensed table-body-center" >
+                    <thead>
+                    <tr>
+                        <th class="text-center">Pseudonyme</th>
+                        <th class="text-center">Date d'inscription</th>
+                        <th class="text-center">Argent total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(function(user) { %>
+                            <tr class="text-center">
+                                <td data-title="surname"><%= user.username %></td>
+                                <td data-title="date"><%= user.date %></td>
+                                <td data-title="money"><%= user.money %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+
+            <br>
+            <br>
+
+           
+        </div>
+    </div>
+    <footer>
+          <nav class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Copyright@2017 </a>;
+                </div>
+            </div>
+        </nav>
+    </footer>
 </body>
 </html>
