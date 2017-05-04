@@ -101,7 +101,7 @@ router.get('/brudele/scores', function(req,res,next){
 });
 
 //GET method
-router.get('/ma', function(req,res,next){
+router.get('/mahmutSport', function(req,res,next){
     res.render('jeux/mahmut/index', {title: 'Signup', msgs:utils.read_messages(req)});
 });
 
