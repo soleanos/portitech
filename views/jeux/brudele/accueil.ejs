@@ -1,0 +1,143 @@
+<!--
+    (c) Platypus SAS 2015-2016
+    Release version - v2
+    Author - Jules & Franck Lepoivre
+    Release date - 2016/03/04 - TP 2 ESILV 2A ACS - Labyrinthes
+    
+    
+    1) Intégrer le code fourni à l’IHM maquettée
+        ­ D’abord générer le code HTML du labyrinthe  : adapter la fonction print_maze pour qu’elle produise votre code HTML / CSS de maquette. 
+        ­ Ajouter une fonction de callback pour que le bouton nouvelle partie, dans la nav_bar déplace l’utilisateur vers la page PLAY et déclenche la génération d’un nouveau labyrinthe. 
+        ==> Suivant les contraintes du modèle MVC, on scinde le code de génération du labyrinthe (dans laby_model.js) et celui de l'affichage et de l'interaction utilisateur (laby.js).
+-->
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>PLAY LABYRINTHE GAME</title>
+    
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../brudele/style/laby.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body onkeydown="uniKeyCode(event)">
+    
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header pull-right">
+                <a class="navbar-brand" href="jeux/brudele/"><i class="glyphicon glyphicon-home"></i>Home</a>
+                <a class="navbar-brand" href="/"><i class="glyphicon glyphicon-user"></i>New-game</a>
+                <a class="navbar-brand" href="/brudele/score"glyphicon ><i class="glyphicon glyphicon-blackboard"></i>Score</a>
+            </div>
+            <div>
+                <p>
+                <span id="name1">Player 1</span> | 
+                <span id="timer1">Time</span> | 
+                <span id="score1">Score</span>
+                </p>
+            </div>
+        </div>
+    </nav>
+    <br><br><br><br>
+    <div class="container">
+        <!--  gestion du chrono et des scores -->
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                   
+            <div class="panel panel-info" >
+                <div class="panel-heading">
+                    <div class="panel-title">Enter player name</div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#"></a></div>
+                </div> 
+                <div style="padding-top:30px" class="panel-body" >
+                    <div style="display:none" class="alert alert-danger col-sm-12"></div>
+                        <div id="maze">
+                            <form action="#" class="form-signin" method="post">
+                                <div class="form-group" id="player_name">
+                                    <input type="text" id="p_name" value="Player 1" class="form-control">
+                                    <button id="name" type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal_init">OK</button>
+                                </div>   
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <footer>
+          <nav class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Copyright@2017 : Labyrinthe game</a>;
+                </div>
+            </div>
+        </nav>
+        </footer>
+        <!--­ En bonus: Ajouter la possibilité de préciser, à travers une fenêtre modale, les dimensions du labyrinthe, en proposant d’une part des dimensions par défaut (ex: 20 x 20) , et en contraignant d’autre part (saisie sécurisée) ces dimensions à un maximum que vous fixerez.  
+        ­ Astuce: intégrer Bootstrap pour utiliser leur fenêtre modale : https://www.bootstrapcdn.com/ pour les inclusions nécessaires, http://www.w3schools.com/bootstrap/bootstrap_modal.asp pour la modale
+        -->
+        <div id="modal_init" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <a type="button" class="close" href="home.html" data-dismiss="modal">&times;</a>
+                <h4 class="modal-title">New game</h4>
+              </div>
+              <div class="modal-body">
+                <form class="form-group">
+                    <label>Input dimensions of the labyrinth :</label>
+                    <input id="x" class="xs" value="5" type="number"/> x <input id="y" class="xs" value="5" type="number"/>
+                    <br/>
+
+                    <label>Enter maze cell size :</label>
+                    <input class="xs" type="number" id="csz" value="50">px
+                    <br/>
+                    <label>Select a timing difficulty :</label>
+                    <select id="time">
+                        <option value="240" selected="selected">4 mn</option>
+                        <option value="120" >2 mn</option>
+                        <option value="60">1 mn</option>
+                        <option value="30" >30 s</option>
+                    </select>
+                    <br/>
+                    <label>Number of monsters :</label>
+                    <input id="nb_monsters" class="xs" value="0" type="number"/>
+                    <br/>
+                    <label>Monster behavior : when a monster and the player share a spot,</label>
+                    <select id="monster_behavior">
+                        <option value="1" selected="selected">Game over !</option>
+                        <option value="2" >Fight !</option>
+                    </select>
+                    
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button id="launch" type="button" class="btn btn-info" data-dismiss="modal">Launch</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../brudele/script/laby_model.js"></script>
+        <script type="text/javascript" src="../../brudele/script/laby.js"></script>
+        <script>
+            //on relie le bouton de lancement à la fonction de démarrage du jeu
+            $(function(){ 
+                $("#launch").on('click', main);
+            })
+
+            function score(){
+
+                $.ajax({
+                   url : '/brudele/score',
+                   type : 'POST',
+                   datType : 'JSON',
+                   data : {"time" : "temps","point" : 50,"total" : 100},
+                   success : function(data){
+                       console.log(data);
+                   },
+                   error : function(resultat, data, erreur){
+                     
+                   },
+
+                });
+            }
+            
+        </script>
+</body>

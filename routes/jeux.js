@@ -13,7 +13,7 @@ var utils = new Utils();
 var Boule = require('../public/javascripts/jeux/anthony/boule');
 var boule = new Boule();
 
-var user = {name:"Anthony",money:50};
+var user = {name:"Anthony"};
 var game = {};
 game.numbers = [1,2,3,4,5,6,7,8,9];
 game.colors = ["Rouge","Noir"];
@@ -88,6 +88,26 @@ router.get('/anthony/phaser', function(req,res,next){
 router.get('/catInvaders', function(req,res,next){
     res.render('jeux/anthony/catInvader',{ msgs:utils.read_messages(req)});
 });
+var user = {name:"Brudele"};
+//GET method
+router.get('/brudele/', function(req,res,next){
+    res.render('jeux/brudele/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
+});
+
+
+//GET method
+router.get('/brudele/scores', function(req,res,next){
+    res.render('jeux/brudele/score', {title: 'Signup', msgs:utils.read_messages(req)});
+});
+
+
+//POST method
+router.post('/brudele/score', function(req,res,next){
+
+});
+
+
+
 module.exports = router;
 
 
