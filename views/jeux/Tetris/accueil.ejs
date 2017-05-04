@@ -9,6 +9,18 @@
 <body style="margin:0px auto;">
 <header><% include ../../partials/header %></header>
 HELLO WORLD
+<SCRIPT LANGUAGE="JavaScript">
+    function posterScore(data){
+        $.ajax({
+            type: "POST",
+            url: '/api/score',
+            data: data,
+            success: function(msg){
+                alert( "Résultat: " + msg );
+            }
+        });
+    };
+</SCRIPT>
 
 <div align="center">
     <script>
@@ -104,7 +116,7 @@ HELLO WORLD
     </script>
 </div>
 <form method = 'POST' >
-    <input type = "submit" onclick="CalculScore('tetris',1200)" >envoye-ton score</input>
+    <input type = "submit" onclick="posterScore(1200)" >envoye-ton score</input>
 </form>
 
 </body>
