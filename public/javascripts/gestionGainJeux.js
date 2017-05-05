@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var sendmail = require('sendmail');
 
 function gestionGainJeux(){}
 
@@ -11,6 +12,20 @@ enregistrerGain = function(gain,userId) {
         User.update({ _id: userId }, { $set: { money: finalmoney }}, function (err, user) {
             if (err) console.log(err);
         });
+    });
+};
+
+
+envoyerMail = function(adresse) {
+    sendmail({
+        from: 'no-reply@yourdomain.com',
+        to: adresse,
+        subject: 'caca',
+        html: 'Mail of test sendmail ',
+    }, function(err, reply) {
+        console.log("coucou");
+        console.log(err && err.stack);
+        console.dir(reply);
     });
 };
 
@@ -32,8 +47,10 @@ gestionGainJeux.prototype.gestionResultat = function(req) {
     console.log("Id de l'utilisateur : " +req.body.idUser);
 
     if(req.body.nomJeux == "boule"){
+        console.log("mdr")
         gain =  calculGainBoule(req);
         enregistrerGain(gain,req.body.idUser);
+        envoyerMail('anthony85180@gmail.com');
     }else if(req.body.nomJeux="tetris"){
         gain = calculGainTetris(req);
         enregistrerGain(gain,req.body.idUser);

@@ -15,5 +15,6 @@ preload.prototype = {
 	},
   	create: function(){
 		this.game.state.start("GameTitle");
+		alert("Y'a les handeks qui arrivent !!!")
 	}
 }
