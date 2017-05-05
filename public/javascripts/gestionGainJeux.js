@@ -62,4 +62,5 @@ calculGainBreakout = function (req) {
     }
     return gain;
 };
+
 module.exports = gestionGainJeux;
