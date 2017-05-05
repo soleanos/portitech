@@ -1,31 +1,67 @@
-<SCRIPT LANGUAGE="JavaScript">
-    function anthony(){
-     document.location.href="http://localhost:3000/jeux/anthony"
-    };
+<DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+    <title>LISTE DES JEUX ITECHSUP</title>
+    
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../brudele/style/laby.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<SCRIPT LANGUAGE="JavaScript">
+		function goToGame(lien){
+            document.location.href="http://localhost:3000"+lien;
+        };
+	</SCRIPT>
 
-    function clement(){
-        document.location.href="http://localhost:3000/jeux/Tetris"
-    }
+	<div class="container">
+		<nav class="navbar navbar-default navbar-fixed-top">
+	        <div class="container">
+	            <div class="navbar-header pull-right">
+	                <a class="navbar-brand" href="/home"><i class="glyphicon glyphicon-home"></i>Home</a>
+	                <a class="navbar-brand" href="/users/logout"><i class="glyphicon glyphicon-user"></i>log out</a>
+	            </div>
+	        </div>
+    	</nav>
+    	<br><br><br><br>
+		<br>
+		<div class="text-center">
+			<h1>LISTE DES JEUX ITECHSUP</h1>
+			<br>
+			<br>
 
-    function brudele(){
-        document.location.href="http://localhost:3000/jeux/brudele"
-    }
+			<div class="row">
+                <% games.forEach(function(game) { %>
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail">
+							<img src="http://thecatapi.com/api/images/get?format=src&type=gif" alt="...">
+							<div class="caption">
+								<h3><%= game.name %></h3>
+								<h3>Créateur : <%= game.createur %></h3>
+								<p>...</p>
+								<button id="anthony" onClick="goToGame('<%= game.lien %>')" class="btn btn-success" > <%= game.name %> </button>
+							</div>
+						</div>
+					</div>
+				<% }); %>
+			</div>
 
-</SCRIPT>
-<p><a href="/users/logout">Log out</a></p>
-<p><a href="/home">Précédent</a></p>
+			<br>
+			<br>
 
-<br>
-LISTE DES JEUX ITECHSUP
-<BR>
-<br>
-
-<button id="anthony" onClick="anthony()"> Jeux Anthony </button>
-<button id="anthony" onClick="clement()"> Jeux Clément </button>
-<button id="anthony" onClick="brudele()"> Jeux Brudele </button>
-
-
-<br>
-<br>
-
-<img src="http://thecatapi.com/api/images/get?format=src&type=gif">
+			
+		</div>
+	</div>
+	<footer>
+          <nav class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Copyright@2017 </a>;
+                </div>
+            </div>
+        </nav>
+        </footer>
+</body>
+</html>
