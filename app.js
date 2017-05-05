@@ -32,7 +32,7 @@ var boule = new Jeux({ name: 'boule',createur:'Anthony',lien:'/jeux/boule'});
 var tetris = new Jeux({ name: 'tetris',createur:'Clement',lien:'/jeux/tetris'});
 var labyrinth = new Jeux({ name: 'Labyrinth',createur:'Brudele et Servino',lien:'/jeux/laby'});
 var MamouthSport = new Jeux({ name: 'Mamouth-Sport',createur:'Mahmut',lien:'/jeux/mahmutSport'});
-var casseBrique = new Jeux({ name: 'Casse brique',createur:'Farid',lien:'/jeux/casseBrique'});
+var breakOut = new Jeux({ name: 'BreakOut',createur:'Farid',lien:'/jeux/BreakOut'});
 var puzzle = new Jeux({ name: 'Cat puzzle',createur:'Anthony',lien:'/jeux/puzzle'});
 var invader = new Jeux({ name: 'Cat invaders',createur:'Anthony',lien:'/jeux/invader'});
 
@@ -42,7 +42,7 @@ labyrinth.save();
 tetris.save();
 boule.save();
 MamouthSport.save();
-casseBrique.save();
+breakOut.save();
 puzzle.save();
 invader.save();
 
