@@ -121,23 +121,6 @@
             $(function(){ 
                 $("#launch").on('click', main);
             })
-
-            function CalculScore(){
-
-                $.ajax({
-                   url : '/brudele/score',
-                   type : 'POST',
-                   datType : 'JSON',
-                   data : {"time" : "temps","point" : 50,"total" : 100},
-                   success : function(data){
-                       console.log(data);
-                   },
-                   error : function(resultat, data, erreur){
-                     
-                   },
-
-                });
-            }
             
         </script>
 </body>
