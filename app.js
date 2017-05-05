@@ -7,12 +7,44 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+//connexion DB
+mongoose.connect('mongodb://localhost/portitech');
 
 //appeler le modele
 require('./models/users_model');
 var User = mongoose.model('User');
-//connexion DB
-mongoose.connect('mongodb://localhost/portitech');
+require('./models/jeux_model');
+var Jeux = mongoose.model('game');
+
+//CREATIONS DES JEUX EN BASE
+
+//On vide la collection
+
+Jeux.remove({}, function(err) {
+    if(err){
+        console.log(err)
+    }
+});
+
+//Instantiation des jeux
+
+var boule = new Jeux({ name: 'boule',createur:'Anthony',lien:'/jeux/boule'});
+var tetris = new Jeux({ name: 'tetris',createur:'Clement',lien:'/jeux/tetris'});
+var labyrinth = new Jeux({ name: 'Labyrinth',createur:'Brudele et Servino',lien:'/jeux/laby'});
+var MamouthSport = new Jeux({ name: 'Mamouth-Sport',createur:'Mahmut',lien:'/jeux/mahmutSport'});
+var breakOut = new Jeux({ name: 'BreakOut',createur:'Farid',lien:'/jeux/BreakOut'});
+var puzzle = new Jeux({ name: 'Cat puzzle',createur:'Anthony',lien:'/jeux/puzzle'});
+var invader = new Jeux({ name: 'Cat invaders',createur:'Anthony',lien:'/jeux/invader'});
+
+//Insertion en base
+
+labyrinth.save();
+tetris.save();
+boule.save();
+MamouthSport.save();
+breakOut.save();
+puzzle.save();
+invader.save();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
