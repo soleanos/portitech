@@ -31,7 +31,7 @@ trollSport.prototype = {
         this.createPlayer();
         cursors = this.game.input.keyboard.createCursorKeys();
 
-        star = items.create(54, this.game.world.height - 120 ,'star');
+        star = items.create(54, this.game.world.height - 150 ,'star');
         this.game.physics.arcade.enable(star);
 
         star.body.bounce.y = 0.44;
@@ -45,6 +45,7 @@ trollSport.prototype = {
 	},//create
     update: function() {
         this.manageCursors();
+		score = Math.round(star.body.x - 54);
         //  Collide the player and the stars with the platforms
         var hitPlatform = this.game.physics.arcade.collide(player, platforms);
         var h2 = this.game.physics.arcade.collide(items,platforms);
@@ -62,7 +63,7 @@ trollSport.prototype = {
     },//update
 	render: function() {
         //if(!shooted)game.debug.text('angle: '+[player.body.y-star.body.y,player.body.x-star.body.x],100,100);
-        this.game.debug.cameraInfo(this.game.camera, 422, 32);
+        //this.game.debug.cameraInfo(this.game.camera, 422, 32);
     },//render
     shoot : function() {
         var angle = [player.body.y-star.body.y, player.body.x-star.body.x];
@@ -142,10 +143,10 @@ trollSport.prototype = {
             score = star.body.x;
             this.game.state.start("GameOver",true,false,score);
         }
-        /*
+        
         if (touchground) this.game.state.start("GameOver",true,false,score);	
         
-        
+        /*
         First set your "limit" speed. When object velocity falls below you are sure object is slowing.
 
         Object's final velocity is composed from its x velocity and y velocity. Ratio and sign of these two gives direction and size in 2D space - velocity vector (velX, velY).
