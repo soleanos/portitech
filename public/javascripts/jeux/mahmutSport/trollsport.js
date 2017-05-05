@@ -147,11 +147,30 @@ trollSport.prototype = {
     checkVel: function(){
         var limit = 1;
         var fv = Math.sqrt(star.body.velocity.x * star.body.velocity.x + star.body.velocity.y * star.body.velocity.y);
-        this.game.debug.text(score, 100, 100);
+        this.game.debug.text("distance: "+score, 100, 100);
+		this.game.debug.text("puissance: "+counter, 100, 120);
         if ((rebondi3)&&(fv < 10)){
             score = star.body.x;
             this.game.state.start("GameOver",true,false,score);
         }
+		
+	  $.ajax({
+      url: "http://localhost:3000/",
+      type: "get",
+      //data: "filter_a=" + valoreInput,
+      dataType: 'jsonp',
+      crossDomain: true,
+
+      success: function (data) {
+        alert("success");
+        //var json2javascript = $.parseJSON(data);
+        manageLayout();
+      },
+
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+       alert("Status: " + textStatus + "    Error:" + errorThrown);
+      }
+  });
         
         if (rebondi3) this.game.state.start("GameOver",true,false,score);	
         
