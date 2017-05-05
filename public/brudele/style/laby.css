@@ -23,33 +23,11 @@ h1, h2, h3, h4, h5, h6, p, nav, footer, table {
 	font-family: verdana;
 }
 
-/*nav {
-    position: fixed;
-    top: 0;
-	height: 100px;
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-	color: #ddd;
-	background-image: url("../img/motif.png");
-}
-nav a{
-	color: #a2b43a;
-	text-decoration:none;
-	background-color : #333;
-	border: 1px solid #ccc;
-	padding: 8px;
-	border-radius: 10px;
-	margin-top: 10px;
-	margin-left: 5px;
-	margin-right: 5px;
-}*/
 .cur{
 	font-weight: bold;
 	color: #ddd;
 	border: 2px solid #ccc;
-}*/
+}
 .scores{
 	max-width:960px !important;
 	margin-left:auto;
