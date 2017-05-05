@@ -5,6 +5,8 @@ var trollSport = function(game){
     counter = Math.round(Math.random() * (5 - 1) + 1);
 	score = 0;
     ui = 0; 
+	z=0;
+	rebondi3=false;
     //platforms, items, player, cursors, star;
 };
 
@@ -55,12 +57,19 @@ trollSport.prototype = {
             if (checkShootable()){
                 this.shoot();
             };
-        }
-        //console.log("vx "+star.body.velocity.x+" vy: "+star.body.velocity.y);
-        if(star.body.y == 514) touchground = true;
+        }    
+		if(star.body.y == 514) {
+			touchground=true;
+			this.rebondir3();
+		}
         this.manageVel(star.body.velocity);
         this.checkVel();
     },//update
+	rebondir3: function() {
+		z++;
+		if (z==3) rebondi3=true;
+	},
+
 	render: function() {
         //if(!shooted)game.debug.text('angle: '+[player.body.y-star.body.y,player.body.x-star.body.x],100,100);
         //this.game.debug.cameraInfo(this.game.camera, 422, 32);
@@ -138,13 +147,13 @@ trollSport.prototype = {
     checkVel: function(){
         var limit = 1;
         var fv = Math.sqrt(star.body.velocity.x * star.body.velocity.x + star.body.velocity.y * star.body.velocity.y);
-        this.game.debug.text(fv, 100, 100);
-        if ((touchground)&&(fv < 10)){
+        this.game.debug.text(score, 100, 100);
+        if ((rebondi3)&&(fv < 10)){
             score = star.body.x;
             this.game.state.start("GameOver",true,false,score);
         }
         
-        if (touchground) this.game.state.start("GameOver",true,false,score);	
+        if (rebondi3) this.game.state.start("GameOver",true,false,score);	
         
         /*
         First set your "limit" speed. When object velocity falls below you are sure object is slowing.
