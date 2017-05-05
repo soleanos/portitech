@@ -40,7 +40,7 @@ trollSport.prototype = {
         star.body.gravity.y = 200;
 		//star.body.damping = 1;
 		
-        star.body.collideWorldBounds = true;
+        star.body.collideWorldBounds = false;
         ui = this.game.add.text(this.game.camera.centerX/2, this.game.camera.centerY/2, 'Strenght: 0',  { font: "16px Arial", fill: "#ffffff", align: "center" });
         ui.anchor.setTo(0.5, 0.5);
 
