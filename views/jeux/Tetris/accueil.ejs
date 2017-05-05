@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <% include ../../partials/head %>
     <meta charset="UTF-8">
     <title>TETRIS</title>
     <script src="../../../javascripts/Tetris/phaser.min.js"></script>
@@ -44,8 +45,6 @@ HELLO WORLD
             game.physics.arcade.enable(player);
 
             //  Player physics properties. Give the little guy a slight bounce.
-            player.body.bounce.y = 0;
-            player.body.bounce.x = 0;
             player.body.gravity.y = 50;
             player.body.collideWorldBounds = true;
 
@@ -57,67 +56,72 @@ HELLO WORLD
         }
 
         var cpt = 0;
-
-             function update(){
-           cpt++;
-           if (cpt == 500){
-               player.body.y += 16;
-               cpt =0;
-           }
+        var angle = 0;
 
 
+             function update() {
+                console.log(angle);
 
-            cursors = game.input.keyboard.createCursorKeys();
-
-            //  Reset the players velocity (movement)
-            player.body.velocity.x = 0;
-
-            if (cursors.left.isDown)
-            {
-                //  Move to the left
-
-                    player.body.x += 16;
-                player.body.x += 0;
+                 game.debug.body(player);
+                 cpt++;
+                 if (cpt == 500) {
+                     player.body.y += 16;
+                     cpt = 0;
+                 }
 
 
+                 cursors = game.input.keyboard.createCursorKeys();
 
-            }
-            if (cursors.right.isDown)
-            {
-                //  Move to the right
+                 //  Reset the players velocity (movement)
+                 player.body.velocity.x = 0;
 
-                    player.body.x -= 16;
-                    player.body.x -= 0;
+                 if (cursors.left.isDown) {
+                     //  Move to the left
+
+                     if (player.body.touching.left == true) {
+                         player.body.x -= 0;
+
+                     }
+                     else {
+                         player.body.x -= 16;
+                     }
 
 
-            }
+                 }
+                 if (cursors.right.isDown) {
+                     //  Move to the right
+                     if (player.body.touching.right == true) {
+                         player.body.x += 0;
+
+                     }
+                     else {
+                         player.body.x += 16;
+                     }
 
 
-            if (cursors.up.isDown){
+                 }
 
+                 console.log(angle);
+                 if (cursors.up.isDown) {
 
-                game.add.tween(player).to( { angle: 90 }, 1, Phaser.Easing.Circular.none, true);
+                        angle +=90;
+                        console.log(angle);
+                     game.add.tween(player).to({angle: angle}, 1, Phaser.Easing.Circular.none, true);
+                     console.log(angle);
+                 }
 
-            }
-            else if( cursors.up.isUp){
+                 if (cursors.down.isDown) {
+                     player.body.y += 16;
+                 }
+                 console.log('update');
 
-            }
-            if(cursors.down.isDown){
-                player.body.y += 16;
-            }
-            console.log('update');
-
-            if( player.body.touching.down == true){
-                player.body.allowRotation = false;
-
-            }
-        }
+             }
 
     </script>
 </div>
-<form method = 'POST' >
-    <input type = "submit" onclick="posterScore(1200)" >envoye-ton score</input>
-</form>
+
+    <input type = "button" onclick="posterScore(1200)" >envoye-ton score</input>
+
 
 </body>
 </html>
