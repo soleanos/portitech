@@ -54,7 +54,11 @@ gestionGainJeux.prototype.gestionResultat = function(req) {
     }else if(req.body.nomJeux="tetris"){
         gain = calculGainTetris(req);
         enregistrerGain(gain,req.body.idUser);
-    }
+    }else if(req.body.nomJeux== "mahmutSport"){
+		gain = calculGainMahmutsport(req);
+		enregistrerGain(gain,req.body.idUser);
+
+	}
 
 };
 
@@ -77,4 +81,8 @@ calculGainTetris = function(req) {
     }
     return gain;
 };
+calculGainMahmutsport = function(req) {
+	gain=score ; // Valeure score
+    return gain;
+}
 module.exports = gestionGainJeux;

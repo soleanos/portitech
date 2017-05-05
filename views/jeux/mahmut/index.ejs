@@ -4,7 +4,7 @@
         <title>Troll Sport</title>
     </head>
     <body>
-
+		<input type="button" onclick="requeteAjax()" >REQUETE AJAX</input>
         <script src="../../../javascripts/Tetris/phaser.min.js"></script>
         <script src="../../../javascripts/Jeux/mahmutSport/boot.js"></script>
         <script src="../../../javascripts/Jeux/mahmutSport/preload.js"></script>
@@ -21,7 +21,23 @@
 				game.state.add("GameOver",gameOver);
 				game.state.start("Boot");
 			})(); 
-            
+             
+			function requeteAjax(){
+            var data = {};
+            data.nomJeux = "mahmutSport";
+            data.score = score;
+            data.idUser = $("#idUser").val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                url: '/jeux/score',
+                success: function(data) {
+                    console.log('success');
+                    console.log(JSON.stringify(data));
+                }
+            });
+        };
         </script>
     </body>
 </html>
