@@ -49,6 +49,8 @@ invader.save();
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var jeux = require('./routes/jeux');
+var api = require('./routes/api');
+
 var app = express();
 
 // view engine setup
@@ -79,6 +81,7 @@ app.use(function(req,res,next){
 app.use('/', routes);
 app.use('/users', users);
 app.use('/jeux', jeux);
+// app.use('/api', api);
 
 // normalement, la suite, pas besoin d'y toucher.
 // catch 404 and forward to error handler

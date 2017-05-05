@@ -10,6 +10,8 @@ var Jeux = mongoose.model('game');
 var util = require('util');
 var Utils = require('../utils');
 var utils = new Utils();
+var GestionResultatJeux = require('../public/javascripts/gestionGainJeux');
+var gestionResultatJeux = new GestionResultatJeux();
 
 var Boule = require('../public/javascripts/jeux/anthony/boule');
 var gestionGainJeux = require('../public/javascripts/gestionGainJeux');
@@ -19,6 +21,12 @@ var game = {};
 game.numbers = [1,2,3,4,5,6,7,8,9];
 game.colors = ["Rouge","Noir"];
 
+router.post('/score', function(req,res){
+    gestionResultatJeux.gestionResultat(req)
+});
+router.get('/score', function(req,res){
+    console.log("get sur score")
+});
 
 router.get('/', function(req,res,next){
     var allGames = [];
@@ -84,32 +92,38 @@ router.post('/boule', function(req,res,next){
 
 var user = {name:"Tetris"};
 router.get('/Tetris/', function(req,res,next){
-    res.render('jeux/Tetris/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
+    utils.HasToBeConnected(req,res);
+    res.render('jeux/Tetris/accueil',{user:req.session.user, msgs:utils.read_messages(req)});
 });
 
 router.get('/puzzle', function(req,res,next){
-    res.render('jeux/anthony/godcat',{title: 'Signup', msgs:utils.read_messages(req)});
+    utils.HasToBeConnected(req,res);
+    res.render('jeux/anthony/godcat',{user:req.session.user, msgs:utils.read_messages(req)});
 });
 
 router.get('/invader', function(req,res,next){
-    res.render('jeux/anthony/catInvader',{ msgs:utils.read_messages(req)});
+    utils.HasToBeConnected(req,res);
+    res.render('jeux/anthony/catInvader',{user:req.session.user, msgs:utils.read_messages(req)});
 });
 
 var user = {name:"Brudele"};
 //GET method
 router.get('/laby', function(req,res,next){
-    res.render('jeux/brudele/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
+    utils.HasToBeConnected(req,res);
+    res.render('jeux/brudele/accueil',{user:req.session.user, msgs:utils.read_messages(req)});
 });
 
 
 //GET method
 router.get('/brudele/scores', function(req,res,next){
-    res.render('jeux/brudele/score', {title: 'Signup', msgs:utils.read_messages(req)});
+    utils.HasToBeConnected(req,res);
+    res.render('jeux/brudele/score', {user:req.session.user, msgs:utils.read_messages(req)});
 });
 
 //GET method
 router.get('/mahmutSport', function(req,res,next){
-    res.render('jeux/mahmut/index', {title: 'Signup', msgs:utils.read_messages(req)});
+    utils.HasToBeConnected(req,res);
+    res.render('jeux/mahmut/index', {user:req.session.user, msgs:utils.read_messages(req)});
 });
 
 
@@ -120,7 +134,8 @@ router.post('/brudele/score', function(req,res,next){
 
 //GET method
 router.get('/BreakOut', function(req,res,next){
-    res.render('jeux/BreakOut/brk', {title: 'Signup', msgs:utils.read_messages(req)});
+    utils.HasToBeConnected(req,res);
+    res.render('jeux/BreakOut/brk', {user:req.session.user, msgs:utils.read_messages(req)});
 });
 
 module.exports = router;

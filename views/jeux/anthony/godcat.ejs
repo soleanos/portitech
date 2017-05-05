@@ -7,10 +7,11 @@
 </head>
 
 <body style="margin:0px auto;">
-<header><% include ../../partials/header %></header>
+<header>
+    <% include ../../partials/header %>
+    <% include ../../partials/head %>
+</header>
 
-
-<div>
     <script>
 
         var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
@@ -186,7 +187,29 @@
 
         }
 
+        function requeteAjax(){
+            var data = {};
+            data.nomJeux = "boule";
+            data.score = 400;
+            data.idUser = $("#idUser").val();
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                url: '/jeux/score',
+                success: function(data) {
+                    console.log('success');
+                    console.log(JSON.stringify(data));
+                }
+            });
+        };
     </script>
+
+<div>
+
+    <input id= 'idUser' name = 'idUser' type="hidden" value = "<%= user._id %>"></input>
+    <input type="button" onclick="requeteAjax()" >REQUETE AJAX</input>
+
 </div>
 
 </body>
