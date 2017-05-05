@@ -4,6 +4,11 @@ body {
     /*background-image: url("garden-maze.jpg");*/
 	
 }
+
+.lol{
+	height: 400px;
+}
+
 .content{
 	background-color: #ddd;
 	position: fixed;
