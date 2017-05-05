@@ -23,11 +23,16 @@ gestionGainJeux.prototype.gestionResultat = function(req) {
     if(req.game.name == "boule"){
         gain =  calculGainBoule(req);
         enregistrerGain(gain,req.session.user);
-    }else if(req.game.name="tetris"){
+    }else if(req.game.name == "tetris"){
         gain = calculGainTetris(req);
         enregistrerScore(score,req.session.user)
         enregistrerGain(gain,req.session.user);
+    }else if (req.game.name == "breakout"){
+        gain = calculGainBreakout(req);
+        enregistrerGain(gain,req.session.user);
     }
+
+
 
 
 };
@@ -45,6 +50,15 @@ calculGainTetris = function(req) {
         gain = 100
     }else {
         gain = 1000;
+    }
+    return gain;
+};
+calculGainBreakout = function (req) {
+    gain = 0;
+    if (req.game.gameover == true && req.game.lives == 2){
+        gain = 1000;
+    }else {
+        gain = 500;
     }
     return gain;
 };

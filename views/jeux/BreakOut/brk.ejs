@@ -7,6 +7,7 @@
   <script src="../../../javascripts/jeux/Breakout/phaser.min.js"></script>
 </head>
 <body>
+<input id= 'idUser' name = 'idUser' type="hidden" value = "<%= user._id %>"></input>
 <script>
     var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {
         preload: preload, create: create, update: update
@@ -23,6 +24,7 @@
     var lifeLostText;
     var playing = false;
     var startButton;
+    var gameover = false;
 
     function preload() {
 
@@ -128,6 +130,7 @@
         }
         if (score == 210){
             alert('Vous avez gagné, Félicitations !');
+            requeteAjax();
             location.reload();
         }
     }
@@ -146,6 +149,7 @@
         }
         else {
             alert('You lost, game over!');
+            requeteAjax();
             location.reload();
         }
     }
@@ -158,6 +162,26 @@
         ball.body.velocity.set(150, -150);
         playing = true;
     }
+</script>
+<script>
+    function requeteAjax(){
+        var data = {};
+        data.nomJeux = "boule";
+        data.score = score;
+        data.gameover = gameover;
+        data.lives = lives;
+        data.idUser = $("#idUser").val();
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            url: '/jeux/score',
+            success: function(data) {
+                console.log('success');
+                console.log(JSON.stringify(data));
+            }
+        });
+    };
 </script>
 </body>
 </html>
