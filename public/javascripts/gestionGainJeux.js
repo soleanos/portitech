@@ -18,7 +18,7 @@ enregistrerScore = function(score,user) {
     });
 };
 
-gestionGainJeux.prototype.gererGain = function(req) {
+gestionGainJeux.prototype.gestionResultat = function(req) {
 
     if(req.game.name == "boule"){
         gain =  calculGainBoule(req);

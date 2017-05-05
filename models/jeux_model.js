@@ -5,10 +5,11 @@ Schema = mongoose.Schema;
 
 // instanciation du modèle de données (plus puissant qu'une table users :p )
 var JeuxSchema = new Schema({
-    nom: {type: String, unique: true},
+    name: {type: String, unique: true},
     createur: {type: String},
     lien : {type: String}
 });
 
 // pour pouvoir faire appel au schéma ailleurs :
-mongoose.model('Jeux',JeuxSchema);
+mongoose.model('game',JeuxSchema);
+

@@ -6,6 +6,7 @@ var router = express.Router();
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Jeux = mongoose.model('game');
 var util = require('util');
 var Utils = require('../utils');
 var utils = new Utils();
@@ -13,18 +14,21 @@ var utils = new Utils();
 var Boule = require('../public/javascripts/jeux/anthony/boule');
 var gestionGainJeux = require('../public/javascripts/gestionGainJeux');
 var boule = new Boule();
-
-var user = {name:"Anthony",money:50};
 var game = {};
+
 game.numbers = [1,2,3,4,5,6,7,8,9];
 game.colors = ["Rouge","Noir"];
 
 
 router.get('/', function(req,res,next){
-
-    utils.HasToBeConnected(req,res);
-    res.render('jeux/home',{user : req.user, msgs:utils.read_messages(req)});
-
+    var allGames = [];
+    allGames = Jeux.find({}, function(err, allGames) {
+        var render = { games:{}, user: req.user, msgs:utils.read_messages(req)};
+        if(!err){
+            render = {games : allGames, user: req.user, msgs:utils.read_messages(req)};
+        }
+        res.render('jeux/home', render);
+    })
 });
 
 router.get('/anthony', function(req,res,next){
@@ -32,7 +36,7 @@ router.get('/anthony', function(req,res,next){
     res.render('jeux/anthony/home',{user : req.user, msgs:utils.read_messages(req)});
 });
 
-router.get('/anthony/boule', function(req,res,next){
+router.get('/boule', function(req,res,next){
 
     utils.HasToBeConnected(req,res);
 
@@ -47,7 +51,7 @@ router.get('/anthony/boule', function(req,res,next){
 
 });
 
-router.post('/anthony/boule', function(req,res,next){
+router.post('/boule', function(req,res,next){
     var render = {};
 
     if (req.body && (req.body.miseNum || req.body.miseColor)){
@@ -83,17 +87,17 @@ router.get('/Tetris/', function(req,res,next){
     res.render('jeux/Tetris/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
 });
 
-router.get('/anthony/phaser', function(req,res,next){
+router.get('/puzzle', function(req,res,next){
     res.render('jeux/anthony/godcat',{title: 'Signup', msgs:utils.read_messages(req)});
 });
 
-router.get('/anthony/catInvaders', function(req,res,next){
+router.get('/invader', function(req,res,next){
     res.render('jeux/anthony/catInvader',{ msgs:utils.read_messages(req)});
 });
 
 var user = {name:"Brudele"};
 //GET method
-router.get('/brudele/', function(req,res,next){
+router.get('/laby', function(req,res,next){
     res.render('jeux/brudele/accueil',{title: 'Signup', msgs:utils.read_messages(req)});
 });
 
