@@ -9,7 +9,7 @@ gameOver.prototype = {
 		gameOverTitle.anchor.setTo(0.5,0.5);
 		var playButton = this.game.add.button(300,320,"play",this.playTheGame,this);
 		playButton.anchor.setTo(0.5,0.5);
-		this.game.add.text(250, 250, "Score:  " +score, { font: "25px Arial", fill: "#ffffff", align: "center" });
+		this.game.add.text(250, 250, "Score:  " +score +" mètres", { font: "25px Arial", fill: "#ffffff", align: "center" });
 	},
 	playTheGame: function(){
         //bricolage pour surcharger le restart :

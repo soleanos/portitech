@@ -468,7 +468,6 @@ function lose(){
 
 function scores(win){
 	player1.score.time = document.querySelector('#time').options[document.querySelector('#time').selectedIndex].value;
-	console.log(player1.score.time);
 	player1.score.elapsed = player1.score.time - parseInt(document.querySelector('#timer1').innerHTML);
 	player1.score.left = player1.score.time - player1.score.elapsed;
 	player1.score.points = 10*parseInt(document.querySelector('#x').value)*parseInt(document.querySelector('#y').value);
@@ -487,19 +486,18 @@ function scores(win){
 	} else player1.score.total = 0;
 }
 
- function score(){
+function CalculScore(){
 
-                $.ajax({
-                   url : '/brudele/score',
-                   type : 'POST',
-                   datType : 'JSON',
-                   data : {"time" : "temps","point" : 50,"total" : 100},
-                   success : function(data){
-                       console.log(data);
-                   },
-                   error : function(resultat, data, erreur){
-                     
-                   },
+    $.ajax({
+       url : '/score',
+       type : 'POST',
+       data : {"time" : player1.score.time, "move" :player1.moves,  "points" : player1.score.points, "totalScore" : player1.score.total},
+       success : function(data){
+       		console.log(data);
+       },
+       error : function(resultat, data, erreur){
+         
+       },
 
-                });
-            }
+    });
+}

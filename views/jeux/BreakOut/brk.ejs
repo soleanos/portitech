@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>Break Out</title>
   <style>* { padding: 0; margin: 0; }</style>
-  <script src="../../../javascripts/Tetris/phaser.min.js"></script>
+  <script src="../../../javascripts/jeux/Breakout/phaser.min.js"></script>
 </head>
 <body>
 <script>
@@ -126,7 +126,7 @@
                 count_alive++;
             }
         }
-        if (count_alive == 0){
+        if (score == 210){
             alert('Vous avez gagné, Félicitations !');
             location.reload();
         }
